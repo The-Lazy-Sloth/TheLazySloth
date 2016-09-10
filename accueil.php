@@ -62,11 +62,10 @@ if($badass_res = $mysqli->query("SELECT COUNT(*) FROM tls_badass"))
       <p class="side_author"><?php echo $author; ?></p>
     </div>
     <hr />
-    
   </div>
-  
+
 <?php
-  
+
 $pair = 0;
 $old = 0;
 $not_old = false;
@@ -87,7 +86,7 @@ if($res = $mysqli->query($article_query))
 {
     if($res->num_rows == 0)
         $not_old = true;
-    
+
     while ($row = $res->fetch_assoc())
     {
         if($row['article_id'] == 1)
@@ -127,7 +126,13 @@ if($res = $mysqli->query($article_query))
 $mysqli->close();
 
 if(!$not_old)
-    echo '<a href="/old/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
+{
+    if(isset($_GET['c']))
+        echo '<a href="/categorie/' . $_GET['c'] . '/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
+    else
+        echo '<a href="/archive/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
+}
+
 
 ?>
 
