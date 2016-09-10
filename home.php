@@ -76,7 +76,14 @@ if(isset($_GET['o']))
 
 echo '<div class="col_article">';
 
-if($res = $mysqli->query("SELECT * FROM tls_articles ORDER BY article_id DESC LIMIT " . $old * 5 . ", 5"))
+$article_query = "";
+
+if(isset($_GET['c']))
+    $article_query = "SELECT * FROM tls_categories JOIN tls_article_category JOIN tls_articles WHERE tls_categories.category_id = tls_article_category.ac_category_id AND tls_articles.article_id = tls_article_category.ac_article_id AND tls_categories.category_name = '" . $_GET['c'] . "' ORDER BY tls_articles.article_id DESC LIMIT " . $old * 5 . ", 5";
+else
+    $article_query = "SELECT * FROM tls_articles ORDER BY article_id DESC LIMIT " . $old * 5 . ", 5";
+
+if($res = $mysqli->query($article_query))
 {
     if($res->num_rows == 0)
         $not_old = true;

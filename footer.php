@@ -1,5 +1,5 @@
         <footer>
-            <p>Copyright The Lazy Cat - Tous droits réservés</p>
+            <p>Copyright The Lazy Sloth - Tous droits réservés</p>
         </footer>
     </div>
   </body>

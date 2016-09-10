@@ -4,7 +4,7 @@ Description: resume of article-2
 Author: The Lazy Cat
 Date: 25 Juillet 2016
 Image: 2743.jpg
-Categories: Informatique, Ecologie
+Categories: Informatique
 Sources: https://bidule.org
 
 # The Beginner's Guide to Writing with MultiMarkdown
