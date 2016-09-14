@@ -19,8 +19,7 @@ include("header-1.php");
 
 echo '<meta name="description" content="' . $row['article_desc'] . '">';
 echo '<title>' . $row['article_title'] . '</title>';
-echo '<link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">';
-
+echo '<link href="/static/css/prism.css" rel="stylesheet" />';
 include("header-2.php");
 ?>
 
@@ -48,9 +47,14 @@ include("header-2.php");
       echo '</div>';
 
       echo $row['article_content'];
+      echo '<hr style="margin-top: 20px; margin-bottom: 10px;" />';
 
+      $sources = explode(",", $row['article_sources']);
+      
       echo '<div class="article_source">';
-      echo $row['article_sources'];
+      echo '<h3>Sources</h3>';
+      foreach($sources as $source)
+          echo '<a href="' . $source . '">' . $source . '</a><br />';
       echo '</div>';
 
       $mysqli->close();
@@ -59,8 +63,5 @@ include("header-2.php");
     </div>
 
 </section>
-
-<script src="cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
+<script src="/static/js/prism.js"></script>
 <?php include("footer.php"); ?>

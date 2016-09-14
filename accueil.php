@@ -49,9 +49,9 @@ if($badass_res = $mysqli->query("SELECT COUNT(*) FROM tls_badass"))
     <div class="side_categories">
       <h4>Catégories</h4>
       <ul>
-        <a href="/categorie/informatique"><li>Geek zone (Informatique)</li></a>
-        <a href="/categorie/ecologie"><li>Green life (Ecologie)</li></a>
-        <a href="/categorie/societe"><li>Ô paisible monde (Société)</li></a>
+        <a href="/categorie/informatique/0"><li>Geek zone (Informatique)</li></a>
+        <a href="/categorie/ecologie/0"><li>Green life (Ecologie)</li></a>
+        <a href="/categorie/societe/0"><li>Ô paisible monde (Société)</li></a>
       </ul>
     </div>
     <br />
@@ -119,20 +119,20 @@ if($res = $mysqli->query($article_query))
         $pair++;
     }
 
+    if(!$not_old)
+    {
+        if(isset($_GET['c']))
+            echo '<a href="/categorie/' . $_GET['c'] . '/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
+        else
+            echo '<a href="/archive/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
+    }
+
+    
     echo '</div>';
     $res->free();
 }
 
 $mysqli->close();
-
-if(!$not_old)
-{
-    if(isset($_GET['c']))
-        echo '<a href="/categorie/' . $_GET['c'] . '/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
-    else
-        echo '<a href="/archive/' . ($old+1) . '"><div class="index_article_old">Les anciens articles</div></a>';
-}
-
 
 ?>
 

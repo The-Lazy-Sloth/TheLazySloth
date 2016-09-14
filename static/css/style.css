@@ -254,6 +254,12 @@ section
 .index_article_old
 {
     margin-bottom: 30px;
+    color: #ff9f00;
+}
+
+.index_article_old:hover
+{
+    color: #f15900;
 }
 
 /* ----------------------------------- */
@@ -296,9 +302,11 @@ section
 {
     padding-top: 5px;
     padding-bottom: 5px;
-    text-align: center;
-    color: #abc737;
+    color: black;
 }
+
+.article h2 { font-size: 2em;}
+.article h3 { font-size: 1.5em;}
 
 .article p
 {
