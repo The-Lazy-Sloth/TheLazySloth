@@ -16,7 +16,9 @@ article_sources VARCHAR(500) NOT NULL
 
 CREATE TABLE tls_categories (
 category_id INT(11) AUTO_INCREMENT PRIMARY KEY,
-category_name VARCHAR(40) UNIQUE NOT NULL
+category_name VARCHAR(40) UNIQUE NOT NULL,
+category_url VARCHAR(40) UNIQUE NOT NULL,
+category_string VARCHAR(40) UNIQUE NOT NULL
 );
 
 CREATE TABLE tls_article_category (
@@ -49,9 +51,9 @@ badass_sentence TEXT NOT NULL,
 badass_author VARCHAR(50) NOT NULL
 );
 
-INSERT INTO tls_categories(category_name) VALUES ('Informatique');
-INSERT INTO tls_categories(category_name) VALUES ('Ecologie');
-INSERT INTO tls_categories(category_name) VALUES ('Société');
+INSERT INTO tls_categories(category_name, category_url, category_string) VALUES ('Informatique', 'informatique', 'Geek zone (Informatique)');
+INSERT INTO tls_categories(category_name, category_url, category_string) VALUES ('Ecologie', 'ecologie', 'Green Life (Ecologie)');
+INSERT INTO tls_categories(category_name, category_url, category_string) VALUES ('Société', 'societe', 'Ô paisible monde (Société)');
 
 INSERT INTO tls_badass(badass_sentence, badass_author) VALUES ('Je suis une phrase badass', 'Le plus grand');
 INSERT INTO tls_badass(badass_sentence, badass_author) VALUES ('Je suis une phrase badass2', 'Le plus fort');

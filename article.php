@@ -34,12 +34,12 @@ include("header-2.php");
       echo '<div class="article_sub">' . $row['article_date'] . '<br/>';
       echo 'Catégorie(s) : ';
 
-      $categories_query = "SELECT category_name FROM tls_categories JOIN tls_article_category JOIN tls_articles WHERE article_id = ac_article_id AND category_id = ac_category_id AND article_id = " . $row['article_id'];
+      $categories_query = "SELECT * FROM tls_categories JOIN tls_article_category JOIN tls_articles WHERE article_id = ac_article_id AND category_id = ac_category_id AND article_id = " . $row['article_id'];
 
       if($res_cat = $mysqli->query($categories_query))
       {
           while($row_cat = $res_cat->fetch_assoc())
-              echo ' ' . $row_cat['category_name'];
+              echo ' <a style="color: grey" href="/categorie/' . $row_cat['category_url']. '/0">' . $row_cat['category_name'] . '</a>';
       }
 
       $res_cat->free();

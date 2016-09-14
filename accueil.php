@@ -10,6 +10,7 @@ $mysqli = mysqli_connect("localhost", "root", "Istiolorf3", "tls");
 if (mysqli_connect_errno($mysqli)) {
     echo "Echec lors de la connexion à MySQL : " . mysqli_connect_error();
 }
+$mysqli->query("SET NAMES 'utf8'");
 
 // Selection d'une phrase aléatoire BADASS
 
@@ -32,6 +33,11 @@ if($badass_res = $mysqli->query("SELECT COUNT(*) FROM tls_badass"))
     $badass_res->free();
 }
 
+// Selection de toutes les catégories
+
+$categories_query = "SELECT * FROM tls_categories";
+
+
 ?>
 
 <section>
@@ -49,9 +55,14 @@ if($badass_res = $mysqli->query("SELECT COUNT(*) FROM tls_badass"))
     <div class="side_categories">
       <h4>Catégories</h4>
       <ul>
-        <a href="/categorie/informatique/0"><li>Geek zone (Informatique)</li></a>
-        <a href="/categorie/ecologie/0"><li>Green life (Ecologie)</li></a>
-        <a href="/categorie/societe/0"><li>Ô paisible monde (Société)</li></a>
+        <?php
+        if($categories_res = $mysqli->query($categories_query))
+        {
+            while($row = $categories_res->fetch_assoc())
+                echo '<a href="/categorie/' . $row['category_url'] . '/0"><li>' . $row['category_string'] . '</li></a>';
+            $categories_res->free();
+        }
+        ?> 
       </ul>
     </div>
     <br />
@@ -92,6 +103,9 @@ if($res = $mysqli->query($article_query))
         if($row['article_id'] == 1)
             $not_old = true;
 
+        $cats_query = "SELECT * FROM tls_categories JOIN tls_article_category WHERE tls_categories.category_id = tls_article_category.ac_category_id AND tls_article_category.ac_article_id = " . $row['article_id'];
+        $comments_query = "SELECT * FROM tls_comments JOIN tls_articles WHERE tls_articles.article_id = " . $row['article_id'];
+
         echo '<div class="index_article">';
         $image;
         $date;
@@ -112,7 +126,23 @@ if($res = $mysqli->query($article_query))
 
         echo $row['article_resume'];
             
-        echo '<div class="index_article_date ' . $date . '">' . $row['article_date'] . '</div>';
+        echo '<div class="index_article_date ' . $date . '">' . $row['article_date'] . ' - ';
+        if($res_cats = $mysqli->query($cats_query))
+        {
+            $b = true;
+            while($row_cat = $res_cats->fetch_assoc())
+            {
+                if(!$b)
+                    echo ' / ';
+                echo '<a style="color: grey;" href="/categorie/' . $row_cat['category_url'] . '/0">' . $row_cat['category_name'] . '</a>';
+                $b = false;
+            }
+            $res_cats->free();
+        }
+        echo ' - ';
+        if($res_coms = $mysqli->query($comments_query))
+            echo $res_coms->num_rows . ' commentaire(s)';
+        echo '</div>';
         
         echo '</div>';
 
