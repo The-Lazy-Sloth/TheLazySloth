@@ -1,10 +1,10 @@
 <?php
 $mysqli = mysqli_connect("localhost", "root", "Istiolorf3", "tls");
 
-
 if (mysqli_connect_errno($mysqli)) {
     echo "Echec lors de la connexion à MySQL : " . mysqli_connect_error();
 }
+$mysqli->query("SET NAMES 'utf8'");
 
 $n = $_GET['n'];
 $row;
@@ -24,44 +24,59 @@ include("header-2.php");
 ?>
 
 <section>
-
   <div class="article">
+    <?php
 
-      <?php
+    echo '<h1 class="article_title">' . $row['article_title'] . '</h1>';
 
-      echo '<h1 class="article_title">' . $row['article_title'] . '</h1>';
+    echo '<div class="article_sub">' . $row['article_date'] . '<br/>';
+    echo 'Catégorie(s) : ';
 
-      echo '<div class="article_sub">' . $row['article_date'] . '<br/>';
-      echo 'Catégorie(s) : ';
+    $categories_query = "SELECT * FROM tls_categories JOIN tls_article_category JOIN tls_articles WHERE article_id = ac_article_id AND category_id = ac_category_id AND article_id = " . $row['article_id'];
 
-      $categories_query = "SELECT * FROM tls_categories JOIN tls_article_category JOIN tls_articles WHERE article_id = ac_article_id AND category_id = ac_category_id AND article_id = " . $row['article_id'];
+    if($res_cat = $mysqli->query($categories_query))
+    {
+        while($row_cat = $res_cat->fetch_assoc())
+            echo ' <a style="color: grey" href="/categorie/' . $row_cat['category_url']. '/0">' . $row_cat['category_name'] . '</a>';
+    }
 
-      if($res_cat = $mysqli->query($categories_query))
-      {
-          while($row_cat = $res_cat->fetch_assoc())
-              echo ' <a style="color: grey" href="/categorie/' . $row_cat['category_url']. '/0">' . $row_cat['category_name'] . '</a>';
-      }
+    $res_cat->free();
+ 
+    echo '</div>';
 
-      $res_cat->free();
-      
-      echo '</div>';
+    echo $row['article_content'];
+    echo '<hr style="margin-top: 20px; margin-bottom: 10px;" />';
 
-      echo $row['article_content'];
-      echo '<hr style="margin-top: 20px; margin-bottom: 10px;" />';
+    $sources = explode(",", $row['article_sources']);
+    
+    echo '<div class="article_source">';
+    echo '<h3>Sources</h3>';
 
-      $sources = explode(",", $row['article_sources']);
-      
-      echo '<div class="article_source">';
-      echo '<h3>Sources</h3>';
-      foreach($sources as $source)
-          echo '<a href="' . $source . '">' . $source . '</a><br />';
-      echo '</div>';
+    foreach($sources as $source)
+    {
+        echo '<a href="' . $source . '">' . $source . '</a><br />';
+    }
 
-      $mysqli->close();
-      ?>
-        
-    </div>
+    echo '<br />';
+    echo '</div>';
+    ?>
+    
+  </div>
+
+  <div class="ajouter_commentaire">
+    
+    <?php
+    include ("commentaires.php");
+    ?>
+
+  </div>
+
+  <div id="commentaires">
+    <?php
+    include ("afficher_commentaires.php");
+    ?>
+  </div>
 
 </section>
 <script src="/static/js/prism.js"></script>
-<?php include("footer.php"); ?>
+<?php include("footer.php");     $mysqli->close();?>

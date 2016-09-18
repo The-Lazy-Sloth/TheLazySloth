@@ -130,7 +130,7 @@
 ?>
     <form id="contact" method="post" action="contact">
       <h2>
-        Contact du paresseux
+        Contact
       </h2>
 <?php
 if(strlen($message_final) > 0)

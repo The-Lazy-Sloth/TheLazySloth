@@ -12,10 +12,10 @@
             <div id="subtitle_site" title="Oui, ça n'a aucun sens.">Parce que la feignantise est mère d'idée...</div>
           </div>
           <ul>
-            <a href="/accueil"><li>Articles</li></a>
-            <a href="/projets"><li>Projets</li></a>
-            <a href="/a-propos"><li>À propos</li></a>
-            <a href="/contact"><li>Contact</li></a>
+            <a href="/accueil"><li>ARTICLES</li></a>
+            <a href="/projets"><li>PROJETS</li></a>
+            <a href="/a-propos"><li>À PROPOS</li></a>
+            <a href="/contact"><li>CONTACT</li></a>
           </ul>
         </nav>
       </header>

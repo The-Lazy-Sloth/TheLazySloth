@@ -4,22 +4,34 @@
 /* ----------------------------------- */
 /* ----------------------------------- */
 
+/* FONT TITRE */
+
+@font-face {
+    font-family: "fashl";
+    src: url('../font/Fashi/fashl.ttf');
+}
+
+@font-face {
+    font-family: "smoothie";
+    src: url('../font/smoothie/smoothie.ttf');
+}
+
 html{
     height: 100%;
 }
 
 body
 {
-    font-size: 14px;
-    font-family: Verdana;
+    font-size: 20px;
+    font-family: fashl , Verdana;
     position: relative;
     height: 100%;
     background-color: #ececec;
 }
 
-h1, h2, h3, h4, h5, h6, #title_site, #subtitle_site
+h1, #title_site, #subtitle_site
 {
-    font-family: "Times New Roman";
+    font-family: smoothie , "Times New Roman";
 }
 
 a
@@ -49,10 +61,13 @@ a
 /* ----------------------------------- */
 /* ----------------------------------- */
 
+header {
+    margin-bottom: 20px;
+}
+
 header div
 {
     text-align: center;
-    padding-bottom: 15px;
 }
 
 nav
@@ -88,8 +103,8 @@ nav ul a
 {
     color: grey;
     min-height: 100%;
-    min-height: 30px;
-    line-height: 30px;
+    min-height: 40px;
+    line-height: 40px;
 }
 
 nav ul li:hover
@@ -101,7 +116,6 @@ nav ul li:hover
 {
     padding: 0;
     margin: 0;
-    font-weight: bold;
 }
 
 #title_site
@@ -109,8 +123,7 @@ nav ul li:hover
     text-shadow: 1px 1px 0.5px #000;
     padding: 0;
     margin: 0;
-    font-size: 20px;
-    font-weight: 900;
+    font-size: 25px;
 }
 
 /*
@@ -162,7 +175,6 @@ section
 {
     float: left;
     width: 65%;
-    margin-top: 10px;
 }
 
 .bas {
@@ -181,9 +193,9 @@ section
     position: relative;
     top: 0;
     margin-bottom: 20px;
-    border: 2px solid #d0d0d0;
+    /*border: 2px solid #d0d0d0;*/
     background-color: white;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
 }
 
 .index_article p
@@ -212,7 +224,7 @@ section
 
 .index_article_date
 {
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
     padding: 5px;
@@ -226,6 +238,7 @@ section
     position: absolute;
     bottom: 0;
     left: 0;
+    margin-right: 110px;
 }
 
 .index_article_date_right
@@ -233,6 +246,7 @@ section
     position: absolute;
     bottom: 0;
     right: 0;
+    margin-left: 110px;
 }
 
 .index_article_image_right
@@ -291,11 +305,10 @@ section
 {
     position: relative;
     padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #d0d0d0;
+    margin-bottom: 10px;
+    /*border: 2px solid #d0d0d0;*/
     background-color: white;
-    border-radius: 3px;
+    /*border-radius: 3px;*/
 }
 
 .article h2, .article h3
@@ -377,6 +390,62 @@ section
     color: #f15900;
 }
 
+.article form {
+    width: 50%;
+    margin: auto;
+}
+
+.ajouter_commentaire input{
+    min-width: 200px;
+    width: 35%;
+}
+
+#com_but {
+    min-width: 100px;
+    width: 100px;
+}
+
+#com_message {
+    width: 35%;
+    min-width: 200px;
+    height: 100px;
+}
+
+
+.ajouter_commentaire {
+    position: relative;
+    padding: 8px;
+    margin-bottom: 20px;
+    /*border: 2px solid #d0d0d0;
+    background-color: white;
+    border-radius: 3px;*/
+    text-align: center;
+    min-width: 250px;
+}
+
+#commentaires {
+    position: relative;
+    padding: 8px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.commentaire {
+    text-align: left;
+    /*border: 2px solid #d0d0d0;*/
+    background-color: white;
+    /*border-radius: 3px;*/
+}
+
+.titre_commentaire {
+    background-color: #ff9f00;
+    padding: 10px;
+}
+
+.contenu_commentaire {
+    padding: 10px
+}
+
 /* ----------------------------------- */
 /* ----------------------------------- */
 /* -----         Footer          ----- */
@@ -405,9 +474,8 @@ footer
     min-height: 100%;
     width: 33%;
     background-color: white;
-    border: 2px solid #d0d0d0;
+    /*border: 2px solid #d0d0d0;*/
     padding: 10px;
-    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -484,7 +552,7 @@ footer
 
 #about
 {
-    border: 2px solid #d0d0d0;
+    /*border: 2px solid #d0d0d0;*/
     background-color: white;
     width: 50%;
     margin: auto;
@@ -512,7 +580,7 @@ footer
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    border: 2px solid #d0d0d0;
+    /*border: 2px solid #d0d0d0;*/
     background-color: white;
     width: 50%;
     margin: auto;
@@ -682,6 +750,18 @@ footer
     .col_article
     {
         width: 100%;
+    }
+}
+
+@media (max-width: 750px) {
+    .ajouter_commentaire {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    #commentaires {
+        width: 100%;
+        min-width: 100%;
     }
 }
 
